@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CTI Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Threat Intelligence Dashboard</h1>
+
+    {% if graph_html %}
+      <div class="graph">{{ graph_html|safe }}</div>
+    {% else %}
+      <p>No data logged yet. Run some lookups first!</p>
+    {% endif %}
+
+    <h2>Recent Lookups</h2>
+    <table>
+      <tr><th>Query</th><th>Source</th><th>Timestamp</th></tr>
+      {% for log in logs %}
+        <tr>
+          <td>{{ log.query }}</td>
+          <td>{{ log.source }}</td>
+          <td>{{ log.timestamp.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <a href="/" class="back-btn">← Back to Home</a>
+  </div>
+</body>
+</html>

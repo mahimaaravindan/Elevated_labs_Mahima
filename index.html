@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cyber Threat Intelligence Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🕶️ Cyber Threat Intelligence Dashboard</h1>
+    <p class="subtitle">Enter an IP or Domain to analyze threat data</p>
+
+    <form method="POST" action="/">
+      <input type="text" name="query" placeholder="e.g. 8.8.8.8 or example.com" required>
+      <button type="submit">Analyze</button>
+    </form>
+
+    <a href="/dashboard" class="dash-btn">📊 View Dashboard</a>
+  </div>
+</body>
+</html>

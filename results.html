@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Results - CTI Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Results for: {{ query }}</h1>
+
+    {% if result.source == "AbuseIPDB" %}
+    <table>
+      <tr><th>Source</th><td>{{ result.source }}</td></tr>
+      <tr><th>IP Address</th><td>{{ result.data.data.ipAddress }}</td></tr>
+      <tr><th>Domain</th><td>{{ result.data.data.domain }}</td></tr>
+      <tr><th>ISP</th><td>{{ result.data.data.isp }}</td></tr>
+      <tr><th>Country</th><td>{{ result.data.data.countryCode }}</td></tr>
+      <tr><th>Usage Type</th><td>{{ result.data.data.usageType }}</td></tr>
+      <tr><th>Abuse Confidence</th><td>{{ result.data.data.abuseConfidenceScore }}</td></tr>
+      <tr><th>Total Reports</th><td>{{ result.data.data.totalReports }}</td></tr>
+      <tr><th>Last Reported</th><td>{{ result.data.data.lastReportedAt }}</td></tr>
+    </table>
+    {% elif result.source == "VirusTotal" %}
+      <pre>{{ result.data | tojson(indent=2) }}</pre>
+    {% endif %}
+
+    <a href="/" class="back-btn">← Back</a>
+  </div>
+</body>
+</html>
